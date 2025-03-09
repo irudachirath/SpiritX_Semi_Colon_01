@@ -12,7 +12,7 @@ Make sure you have the following installed before running the project:
  
 ## 📥 Clone the Repository
 ```sh
-git clone https://github.com/(https://github.com/irudachirath/SpiritX_Semi_Colon_01.git
+git clone https://github.com/irudachirath/SpiritX_Semi_Colon_01.git
 cd SpiritX_Semi_Colon_01
 ```
 
