@@ -7,15 +7,13 @@ Outline the requirements or objectives for the first stage of development.
 
 ## 🛠️ Prerequisites
 Make sure you have the following installed before running the project:
-- **Node.js**  
-- **Docker** (Ensure Docker Engine is running)  
-- **Database** (MySQL, PostgreSQL, MongoDB, etc.)  
-- Any other required packages  
-
+- **npm** or any other package manager
+- **Docker** (Ensure Docker Engine is running)   
+ 
 ## 📥 Clone the Repository
 ```sh
-git clone https://github.com/your-repo.git
-cd your-repo
+git clone https://github.com/(https://github.com/irudachirath/SpiritX_Semi_Colon_01.git
+cd SpiritX_Semi_Colon_01
 ```
 
 ## ⚙️ Backend Setup
