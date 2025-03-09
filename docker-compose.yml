@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: auth_db
+    ports:
+      - "3306:3306" # FIX: Change 3306:3306 to 3307:3306 to avoid conflicts
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: backend_service
+    restart: always
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: auth_db
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET: your_secret_key
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    volumes:
+      - ./backend:/app # FIX: Use a bind mount instead of named volume
+    command: ["npm", "run", "dev"]
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    container_name: frontend_service
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app # FIX: Use a bind mount instead of named volume
+    # FIX: Removed "command: ["npm", "run", "dev"]" since Nginx serves the frontend
+
+volumes:
+  mysql_data:

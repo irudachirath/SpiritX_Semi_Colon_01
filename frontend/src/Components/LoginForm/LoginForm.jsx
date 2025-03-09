@@ -319,7 +319,7 @@ const LoginForm = () => {
         setLoginError(data.message || "Invalid credentials.");
       }
     } catch (error) {
-      setLoginError("Error connecting to the server.");
+      setLoginError(data.error || "Error connecting to the server.");
     } finally {
       setLoadingLogin(false);
     }
@@ -434,11 +434,6 @@ const LoginForm = () => {
           <form onSubmit={handleLoginSubmit}>
             <h1>Login</h1>
 
-            {/* Authentication error above CTA button */}
-            {loginError && (
-              <div className="error-message auth-error">{loginError}</div>
-            )}
-
             <div className="input-box">
               <input
                 type="text"
@@ -461,6 +456,10 @@ const LoginForm = () => {
               />
               <FaLock className="icon" />
             </div>
+            {/* Authentication error above CTA button */}
+            {loginError && (
+              <div className="error-message auth-error">{loginError}</div>
+            )}
 
             <button type="submit">Login</button>
             <p>
